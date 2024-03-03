@@ -1,0 +1,23 @@
+#Create your own store! You should have a table for all the items in your store, and at least 5 columns for the kind of data you think you'd need to store.
+#You should sell at least 15 items, and use select statements to order your items by price and show at least one statistic about the items.
+
+CREATE TABLE pet_store (id INTEGER PRIMARY KEY, pet TEXT, type TEXT, price INTEGER, 
+quantity INTEGER);
+
+INSERT INTO pet_store VALUES (1, "Husky", "Dog", "200", 4);
+INSERT INTO pet_store VALUES (2, "Pit_Bull", "Dog", "300", 3);
+INSERT INTO pet_store VALUES (3, "Rag_Doll", "Cat", "400", 4);
+INSERT INTO pet_store VALUES (4, "German Sherpard", "Dog", "500", 6);
+INSERT INTO pet_store VALUES (5, "Bull_Dog", "Dog", "300", 2);
+INSERT INTO pet_store VALUES (6, "Border_Collie", "Dog", "700", 1);
+INSERT INTO pet_store VALUES (7, "Siamese", "Cat", "1200", 4);
+INSERT INTO pet_store VALUES (8, "Maine_Coon", "Cat", "900", 5);
+INSERT INTO pet_store VALUES (9, "British_Shorthair", "Cat", "1300", 4);
+INSERT INTO pet_store VALUES (10, "American_Shorthair", "Cat", "20", 10);
+INSERT INTO pet_store VALUES (11, "Poodle", "Dog", "1200", 1);
+INSERT INTO pet_store VALUES (12, "Beagle", "Dog", "600", 4);
+INSERT INTO pet_store VALUES (13, "Golden_Doodle", "Dog", "1500", 4);
+INSERT INTO pet_store VALUES (14, "Golden_Retriever", "Dog", "400", 5);
+INSERT INTO pet_store VALUES (15, "Exotic_Shorthair", "Cat", "20", "1");
+SELECT * FROM pet_store ORDER BY price;
+SElECT SUM(quantity) FROM pet_store;
