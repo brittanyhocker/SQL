@@ -1,5 +1,4 @@
-#Create your own store! You should have a table for all the items in your store, and at least 5 columns for the kind of data you think you'd need to store.
-#You should sell at least 15 items, and use select statements to order your items by price and show at least one statistic about the items.
+# The following table is designed to show all the items sold in a petstore using at least 5 columns for the store's data, selling at least 15 items:
 
 CREATE TABLE pet_store (id INTEGER PRIMARY KEY, pet TEXT, type TEXT, price INTEGER, 
 quantity INTEGER);
@@ -19,5 +18,11 @@ INSERT INTO pet_store VALUES (12, "Beagle", "Dog", "600", 4);
 INSERT INTO pet_store VALUES (13, "Golden_Doodle", "Dog", "1500", 4);
 INSERT INTO pet_store VALUES (14, "Golden_Retriever", "Dog", "400", 5);
 INSERT INTO pet_store VALUES (15, "Exotic_Shorthair", "Cat", "20", "1");
-SELECT * FROM pet_store ORDER BY price;
-SElECT SUM(quantity) FROM pet_store;
+
+# Order items by price
+SELECT * FROM pet_store
+ORDER BY price;
+
+# Find how many total items are in the store
+SElECT SUM(quantity)
+FROM pet_store;
