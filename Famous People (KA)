@@ -1,4 +1,5 @@
-#Make your own table with some small set of “famous people”
+# The following table is made up of a small set of “famous people”:
+
 CREATE TABLE karjenners (id INTEGER PRIMARY KEY,
     first_name TEXT,
     last_name TEXT);
@@ -17,7 +18,9 @@ INSERT INTO karjenners (first_name, last_name)
     VALUES ("Kendall", "Jenner");
 INSERT INTO karjenners (first_name, last_name)
     VALUES ("Kylie", "Jenner");
-    
+
+# The following table describes the job of each person from the previous table:
+
 CREATE TABLE karjenner_jobs (id INTEGER PRIMARY KEY,
     person_id INTEGER,
     business_type TEXT);
@@ -43,6 +46,8 @@ INSERT INTO karjenner_jobs (person_id, business_type)
 INSERT INTO karjenner_jobs (person_id, business_type)
     VALUES (7, "skincare brand");
 
+# The following table pairs up people from the first table that have fueded with one another:
+
 CREATE TABLE karjenner_fueds (id INTEGER PRIMARY KEY,
     person1_id INTEGER,
     person2_id INTEGER);
@@ -60,13 +65,16 @@ INSERT INTO karjenner_fueds (person1_id, person2_id)
 INSERT INTO karjenner_fueds (person1_id, person2_id)
   VALUES (2, 6);
 
-#Use a join statement to view first names with their jobs
-SELECT first_name, business_type FROM karjenners
+
+# Use a join statement to view first names with their jobs
+SELECT first_name, business_type
+FROM karjenners
 JOIN karjenner_jobs
     ON karjenners.id = karjenner_jobs.person_id;
 
-#Use a join statesment to view the fueds they've had with eachother
-SELECT a.first_name, b.first_name FROM karjenner_fueds
+# Use a join statesment to view the fueds they've had with eachother
+SELECT a.first_name, b.first_name
+FROM karjenner_fueds
     JOIN karjenners a
     ON person1_id = a.id
     JOIN karjenners b
