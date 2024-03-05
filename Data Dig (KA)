@@ -1,4 +1,4 @@
-#Pick one of those data sets or create a data set like that, and use advanced SELECT queries to discover things about the data.
+# This analysis uses the following Marvel Characters data set:
 CREATE TABLE marvels (ID INTEGER PRIMARY KEY,
     name TEXT,
     popularity INTEGER,
@@ -42,19 +42,24 @@ INSERT INTO marvels VALUES(25, "Juggernaut", 76, "Neutral", "Male", 2.87, 862, "
 INSERT INTO marvels VALUES(26, "Professor X", 58, "Good", "Male", 1.83, 86, "EUA", 5, 2, 2, 2, 5, 3);
 
 
-#Use a select statement and aggregate function to find the average intelligence of the characters
-SELECT AVG(intelligence) FROM marvels;
+# Find the average intelligence of the characters
+SELECT AVG(intelligence)
+FROM marvels;
 
-#Use a select statement and aggregate function to find the least intelligent character(s)
-SELECT MIN(intelligence) FROM marvels;
+# Find the least intelligent character(s)
+SELECT MIN(intelligence)
+FROM marvels;
 
-#Use a select statement and aggregate function to find the most intelligent character(s)
-SELECT MAX(intelligence) FROM marvels;
+# Find the most intelligent character(s)
+SELECT MAX(intelligence)
+FROM marvels;
 
-#Use a select statement and order by clause to order characters from least to most intelligent
-SELECT name, intelligence FROM marvels ORDER BY intelligence;
+# Order characters from least to most intelligent
+SELECT name, intelligence
+FROM marvels
+ORDER BY intelligence;
 
-#Use a select statement and case function to rename intelligence levels from 1-4 to smart, mediocre, and stupid
+# Assign intelligence levels of smart, mediocre, and stupid to the characters
 SELECT name,
     CASE
     WHEN intelligence >=4 THEN "smart"
@@ -63,7 +68,7 @@ SELECT name,
         END as "how_smart"
         FROM marvels;
 
-#Use a select statement and case function to count how many of each intelligence levels there are
+# Find how many of each intelligence levels are there
 SELECT COUNT(*),
     CASE
     WHEN intelligence >=4 THEN "smart"
@@ -73,11 +78,20 @@ SELECT COUNT(*),
         FROM marvels
         GROUP BY how_smart;
 
-#Use a select and where statement to list which characters are both Good and Male
-SELECT name FROM marvels WHERE gender = "Male" AND alignment = "Good";
+# Find which characters are both Good and Male
+SELECT name
+FROM marvels
+WHERE gender = "Male"
+AND alignment = "Good";
 
-#Use a select and where statement to list which characters are both Bad and Female
-SELECT name FROM marvels WHERE alignment = "Bad" OR gender = "Female";
+# Find which characters are either Bad or Female
+SELECT name
+FROM marvels
+WHERE alignment = "Bad"
+OR gender = "Female";
 
-#Use a select and having statement to find which characters are over 2meters tall
-SELECT name FROM marvels GROUP BY name HAVING height_m > 2;
+# Find which characters are over 2meters tall
+SELECT name
+FROM marvels
+GROUP BY name
+HAVING height_m > 2;
