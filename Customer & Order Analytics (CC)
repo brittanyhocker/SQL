@@ -1,0 +1,45 @@
+# In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
+
+## How many orders were placed in January?
+SELECT COUNT(*) FROM BIT_DB.JanSales
+WHERE length(orderID) = 6
+AND orderId <> 'Order ID';
+
+## How many of those orders were for an iPhone?
+SELECT COUNT(orderID) FROM JanSales
+WHERE length(orderId) = 6
+AND orderId <> 'Order ID'
+AND Product = 'iPhone';
+
+## Select the customer account numbers for all the orders that were placed in February.
+SELECT distinct customers.acctnum
+FROM BIT_DB.customers AS customers
+INNER JOIN BIT_DB.FebSales AS febsales
+ON customers.order_id= febsales.OrderID
+WHERE length(orderId) = 6
+AND orderId <> 'Order ID';
+
+## Which product was the cheapest one sold in January, and what was the price?
+SELECT Product, Min(price)
+FROM BIT_DB.JanSales
+WHERE price in (SELECT min(price) FROM BIT_DB.JanSales);
+
+## What is the total revenue for each product sold in January?
+SELECT SUM(quantity)*price AS revenue, Product 
+FROM BIT_DB.JanSales
+GROUP BY Product;
+
+## Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+SELECT product, quantity, SUM(quantity)*Price AS Revenue, location
+FROM BIT_DB.FebSales
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+GROUP BY Product;
+
+## How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
+SELECT COUNT(DISTINCT Cust.acctnum), AVG(quantity*Price) AS Avg_Spent
+FROM BIT_DB.customers AS Cust
+LEFT JOIN BIT_DB.FebSales AS Feb
+ON Cust.order_id = Feb.orderID
+WHERE length(orderId) = 6
+AND orderId <> 'Order ID'
+AND Feb.quantity > 2;
