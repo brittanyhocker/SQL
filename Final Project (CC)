@@ -1,3 +1,7 @@
+# For this project, I downloaded a database from my Break Into Tech Course that includes 11 tables
+# Then I performed analytics on the data using SQL. 
+
+
 ## Select the Last and First name of each empoloyee as well as the Name and Title of the person they report to
 SELECT e.LastName, e.FirstName, e.Title,
 s.LastName AS SupervisorLastName,
